@@ -102,20 +102,12 @@ class ReceivesCard extends Component<IReceivesCardProp, IReceivesCardState> {
     this.state = {
       showCredate: false,
       showRatime: false,
-      creStartDate: moment()
-        .add(-6, 'day')
-        .format('YYYY-MM-DD'),
-      creEndDate: moment()
-        .add(1, 'day')
-        .format('YYYY-MM-DD'),
-      searchCredateString: `${moment()
-        .add(-6, 'day')
-        .format('YYYY-MM-DD')} 至 ${moment()
-        .add(1, 'day')
-        .format('YYYY-MM-DD')}`,
+      creStartDate: '',
+      creEndDate: '',
+      searchCredateString: '请选择',
       raStartDate: '',
       raEndDate: '',
-      searchRatimeString: '',
+      searchRatimeString: '请选择',
     };
   }
 

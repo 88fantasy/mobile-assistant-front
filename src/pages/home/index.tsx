@@ -134,12 +134,12 @@ class Index extends React.Component<{}> {
           ]}
         >
           <div style={{ textAlign: 'left' }}>
-            <p>发布日期: 2020-02-06</p>
-            <p>本次更新增加 欠款明细查询</p>
+            <p>发布日期: 2020-03-17</p>
+            <p>本次更新增加 销售冲收查询</p>
             <p>
               历史版本信息请查看{' '}
               <a
-                href="https://github.com/88fantasy/mobile-assistant/releases"
+                href="https://github.com/88fantasy/mobile-assistant-front/releases"
                 target="_blank"
                 rel="noopener noreferrer"
               >
