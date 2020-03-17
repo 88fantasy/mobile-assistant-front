@@ -1,5 +1,5 @@
 import React from 'react';
-import Exception from '../Exception';
+import Exception from '@/components/Exception';
 import CheckPermissions from './CheckPermissions';
 /**
  * 默认不能访问任何页面

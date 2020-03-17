@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react';
 import NProgress from 'nprogress';
-import withRouter from 'umi/withRouter';
-import Authorized from '@/utils/Authorized';
+import { withRouter } from 'umi';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import Exception403 from '@/pages/exception/403';
 import pathToRegexp from 'path-to-regexp';
 import { connect } from 'dva';
+import Exception403 from '@/pages/exception/403';
+import Authorized from '@/utils/Authorized';
 import styles from './index.less';
 import '@/layouts/nprogress.less';
 

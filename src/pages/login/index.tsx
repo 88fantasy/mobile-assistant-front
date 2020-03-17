@@ -2,95 +2,83 @@ import React from 'react';
 
 import { connect } from 'dva';
 
-import router from 'umi/router';
-import { setAuthority, setAccount } from '@/utils/authority';
+import { Avatar, Button, CssBaseline, TextField, Typography, Container } from '@material-ui/core';
 
-import {
-  Avatar,
-  Button,
-  CssBaseline,
-  TextField,
-  Typography,
-  Container
-} from '@material-ui/core';
-
-import Alert from '@material-ui/lab/Alert'
+import Alert from '@material-ui/lab/Alert';
 
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 import { withStyles, createStyles, Theme } from '@material-ui/core/styles';
 
-const useStyles = (theme: Theme) => createStyles({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-});
+const useStyles = (theme: Theme) =>
+  createStyles({
+    paper: {
+      marginTop: theme.spacing(8),
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+    },
+    avatar: {
+      margin: theme.spacing(1),
+      backgroundColor: theme.palette.secondary.main,
+    },
+    form: {
+      width: '100%', // Fix IE 11 issue.
+      marginTop: theme.spacing(1),
+    },
+    submit: {
+      margin: theme.spacing(3, 0, 2),
+    },
+  });
 
 @connect(({ account, loading }) => ({
   account,
   loading: loading.models.account,
 }))
 class Index extends React.PureComponent {
-
   state = {
-    username: "",
-    password: ""
-  }
+    username: '',
+    password: '',
+  };
 
   onUsernameChange = value => {
     this.setState({
-      username: value
+      username: value,
     });
-  }
+  };
 
   onPasswordChange = value => {
     this.setState({
-      password: value
+      password: value,
     });
-  }
+  };
 
   toLogin = () => {
     const { username, password } = this.state;
 
     const { dispatch } = this.props;
-   
 
-    if (username === "") {
+    if (username === '') {
       // to do sth
       // } else if (this.state.password === "") {
       // to do sth
     } else {
-      
       dispatch({
         type: 'account/login',
         payload: {
           username,
           stageid: 1,
-          pwd : password
+          pwd: password,
         },
       });
 
       // setAccount(username);
       // setAuthority("admin");
-      // router.replace("/");
+      // history.replace("/");
     }
-  }
+  };
 
-  public render() {
+  render() {
     const { classes, account } = this.props;
     const { username, password } = this.state;
 
@@ -106,9 +94,7 @@ class Index extends React.PureComponent {
               移动销售助手
             </Typography>
             <form className={classes.form} noValidate>
-            {
-              account.accountData.msg && <Alert severity="error">{account.accountData.msg}</Alert>
-            }
+              {account.accountData.msg && <Alert severity="error">{account.accountData.msg}</Alert>}
               <TextField
                 variant="outlined"
                 margin="normal"
@@ -121,7 +107,7 @@ class Index extends React.PureComponent {
                 placeholder="请输入员工操作码"
                 defaultValue={username}
                 autoFocus
-                onChange={ e => this.onUsernameChange(e.target.value)}
+                onChange={e => this.onUsernameChange(e.target.value)}
               />
               <TextField
                 variant="outlined"
@@ -144,13 +130,13 @@ class Index extends React.PureComponent {
                 className={classes.submit}
                 onClick={this.toLogin}
               >
-                登   录
-          </Button>
+                登 录
+              </Button>
             </form>
           </div>
         </Container>
       </div>
-    )
+    );
   }
 }
-export default withStyles(useStyles, { })(Index);
+export default withStyles(useStyles, {})(Index);

@@ -2,18 +2,20 @@ export default [
   {
     path: '/',
     component: './home/index',
-    title: '首页'
-
+    wrappers: ['@/wrappers/Authorized'],
+    authority: ['user', 'admin'],
+    title: '首页',
   },
-  { 
-    path: '/login', 
-    component: './login/index', 
-    title: ' 登录' 
+  {
+    path: '/login',
+    component: './login/index',
+    title: '登录',
   },
-  { path: '/custom', 
+  {
+    path: '/custom',
     title: '客户档案',
     component: '../layouts/BasicLayout',
-    Routes: ['src/pages/Authorized'],
+    wrappers: ['@/wrappers/Authorized'],
     authority: ['user', 'admin'],
     routes: [
       {
@@ -24,9 +26,9 @@ export default [
       {
         path: '/custom/card',
         title: '客户档案 - 详细',
-        component: './custom/card',
+        component: './custom/card/index',
       },
-    ]
+    ],
   },
   {
     title: 'exception',

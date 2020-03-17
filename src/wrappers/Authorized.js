@@ -1,8 +1,7 @@
 import React from 'react';
+import { Redirect } from 'umi';
 import RenderAuthorized from '@/components/Authorized';
 import { getAuthority } from '@/utils/authority';
-import Redirect from 'umi/redirect';
-
 
 export default ({ children }) => {
   const Authority = getAuthority();
@@ -11,5 +10,5 @@ export default ({ children }) => {
     <Authorized authority={children.props.route.authority} noMatch={<Redirect to="/login" />}>
       {children}
     </Authorized>
-  )
+  );
 };

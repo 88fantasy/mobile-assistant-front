@@ -3,45 +3,23 @@ import pageRoutes from './router.config';
 import theme from '../src/theme';
 import webpackPlugin from './plugin.config';
 
-const plugins = [
-  [
-    'umi-plugin-react',
-    {
-      antd: true,
-      dva: {
-        hmr: true,
-      },
-      dynamicImport: {
-        loadingComponent: './components/PageLoading/index',
-        webpackChunkName: true,
-      },
-      pwa: {
-        workboxPluginMode: 'InjectManifest',
-        workboxOptions: {
-          importWorkboxFrom: 'local',
-        },
-      },
-      title: {
-        defaultTitle: 'umi-dva-antd-mobile',
-      },
-      dll: false,
-      hd: false,
-      routes: {
-        exclude: [],
-      },
-      hardSource: false,
-    },
-  ],
-];
 export default {
   // add for transfer to umi
-  base: '',
-  publicPath: '',
+  base: '/',
+  publicPath: '/',
   define: {
     APP_TYPE: process.env.APP_TYPE || '',
   },
-  history: 'hash', // 默认是 browser
-  plugins,
+  history: { type: 'browser' }, // 默认是 browser
+
+  // umi
+  dva: {
+    hmr: true,
+  },
+  dynamicImport: {
+    loading: '@/components/PageLoading/index',
+  },
+  title: 'mobile-assistant',
   //   exportStatic: {},
   // 路由配置
   routes: pageRoutes,
@@ -52,7 +30,7 @@ export default {
     'brand-primary-tap': theme.brandPrimaryTap,
   },
   externals: {},
-  lessLoaderOptions: {
+  lessLoader: {
     javascriptEnabled: true,
   },
   cssnano: {

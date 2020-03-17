@@ -1,10 +1,9 @@
 import mockjs from 'mockjs';
 
-
 function postLoginTestResult(req, res) {
   const result = mockjs.mock({
     success: true,
-    data : '17161',
+    data: '17161', // 18289
   });
   return res.json(result);
 }

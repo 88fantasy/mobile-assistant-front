@@ -1,6 +1,6 @@
 import fetch from 'dva/fetch';
 import { Toast } from 'antd-mobile';
-import router from 'umi/router';
+import { history } from 'umi';
 import hash from 'hash.js';
 
 const codeMessage = {
@@ -61,7 +61,7 @@ const cachedSave = (response, hashcode) => {
  */
 export default function request(url, option) {
   const options = {
-    expirys: true,
+    expirys: false,
     ...option,
   };
   /**
@@ -136,18 +136,13 @@ export default function request(url, option) {
       }
       // environment should not be used
       else if (status === 403) {
-        router.push('/Exception/403');
-      }
-      
-      else if (status <= 504 && status >= 500) {
-        router.push('/Exception/500');
-        
-      }
-      else if (status >= 404 && status < 422) {
-        router.push('/404');
-      }
-      else {
-        router.replace('/Exception/500');
+        history.push('/Exception/403');
+      } else if (status <= 504 && status >= 500) {
+        history.push('/Exception/500');
+      } else if (status >= 404 && status < 422) {
+        history.push('/404');
+      } else {
+        history.replace('/Exception/500');
       }
     });
 }

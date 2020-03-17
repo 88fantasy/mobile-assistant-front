@@ -9,9 +9,9 @@ export default {
   namespace: 'account',
   state: {
     accountData: {
-      accountId : "",
-      stageid : 1,
-      msg : "",
+      accountId: '',
+      stageid: 1,
+      msg: '',
     },
   },
   effects: {
@@ -28,33 +28,31 @@ export default {
 
       const { accountData } = yield select(state => state.account);
       console.log(accountData);
-      if(accountData.accountId !== '') {
+      if (accountData.accountId !== '') {
         setAccount(accountData.accountId);
-        setAuthority("user");
+        setAuthority('user');
         yield put(routerRedux.replace('/'));
       }
     },
   },
   reducers: {
     saveAccountData(state, { payload }) {
-      if(payload.success) {
+      if (payload.success) {
         return {
           ...state,
-          accountData : {
-            accountId : payload.data,
-            msg : '',
-          }
+          accountData: {
+            accountId: payload.data,
+            msg: '',
+          },
         };
       }
-      else {
-        return {
-          ...state,
-          accountData : {
-            accountId : '',
-            msg : '帐号或密码错误',
-          }
-        };
-      }
+      return {
+        ...state,
+        accountData: {
+          accountId: '',
+          msg: '帐号或密码错误',
+        },
+      };
     },
   },
   // subscriptions: {

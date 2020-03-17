@@ -22,7 +22,7 @@ export function setAuthority(authority) {
 }
 
 export function setAccount(accountid) {
-  return sessionStorage.setItem('assistant-mobile-account',accountid);
+  return sessionStorage.setItem('assistant-mobile-account', accountid);
 }
 
 export function getAccount() {

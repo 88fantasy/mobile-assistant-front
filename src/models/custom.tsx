@@ -1,22 +1,28 @@
 // @ts-ignore
-import { queryCustoms, queryCustomInfo, queryProducts, queryOrders, queryArrears } from '@/services/custom';
+import {
+  queryCustoms,
+  queryCustomInfo,
+  queryProducts,
+  queryOrders,
+  queryArrears,
+  queryReceives,
+} from '@/services/custom';
 import { Toast } from 'antd-mobile';
-import { router } from 'dva/router';
+// import { router } from 'dva/router';
 
 export default {
   namespace: 'custom',
   state: {
     customData: [],
     customInfo: {},
-    productData : [],
-    orderData : [],
-    arrearData : [],
+    productData: [],
+    orderData: [],
+    arrearData: [],
+    receiveData: [],
   },
   effects: {
-    *queryCustoms({ payload, callback }, { call, put, select }) {
+    *queryCustoms({ payload, callback }, { call, put }) {
       Toast.loading('正在获取客户列表...');
-      // const { customData }  = yield select(state => state.data);
-      // console.log(queryCustoms);
       const response = yield call(queryCustoms, payload);
       yield put({
         type: 'saveCustomData',
@@ -29,9 +35,8 @@ export default {
         callback(response, true);
       }
     },
-    *queryCustomInfo({ payload, callback }, { call, put, select }) {
+    *queryCustomInfo({ payload, callback }, { call, put }) {
       Toast.loading('正在获取客户基本信息...');
-      // const { chapterData } = yield select(state => state.global);
       const response = yield call(queryCustomInfo, payload);
       yield put({
         type: 'saveCustomBaseCardData',
@@ -51,7 +56,7 @@ export default {
         type: 'saveProductResult',
         payload: {
           ...response,
-        }
+        },
       });
       Toast.hide();
       if (callback) {
@@ -65,7 +70,7 @@ export default {
         type: 'saveOrderResult',
         payload: {
           ...response,
-        }
+        },
       });
       Toast.hide();
       if (callback) {
@@ -79,7 +84,21 @@ export default {
         type: 'saveArrearResult',
         payload: {
           ...response,
-        }
+        },
+      });
+      Toast.hide();
+      if (callback) {
+        callback(response);
+      }
+    },
+    *queryReceives({ payload, callback }, { call, put }) {
+      Toast.loading('正在查询冲收...');
+      const response = yield call(queryReceives, payload);
+      yield put({
+        type: 'saveReceiveResult',
+        payload: {
+          ...response,
+        },
       });
       Toast.hide();
       if (callback) {
@@ -91,7 +110,7 @@ export default {
     saveCustomBaseCardData(state, { payload }) {
       return {
         ...state,
-        customInfo : payload.data,
+        customInfo: payload.data,
       };
     },
     saveCustomData(state, { payload }) {
@@ -116,6 +135,12 @@ export default {
       return {
         ...state,
         arrearData: payload.data || [],
+      };
+    },
+    saveReceiveResult(state, { payload }) {
+      return {
+        ...state,
+        receiveData: payload.data || [],
       };
     },
   },
