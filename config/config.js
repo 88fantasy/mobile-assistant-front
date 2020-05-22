@@ -38,9 +38,9 @@ export default {
   },
   targets: {
     android: 5,
-    ios: 7,
+    ios: 10,
     chrome: 58,
-    ie: 9,
+    ie: 11,
   },
   outputPath: './dist',
   hash: true,

@@ -82,6 +82,21 @@ const OrderExpansionPanels = props => {
               <ListItem>
                 <ListItemText primary={`销售细单:${row.salesdtlid}`} />
               </ListItem>
+              <ListItem>
+                <ListItemText primary={`订单状态:${row.sostatus}`} />
+              </ListItem>
+              <ListItem>
+                <ListItemText primary={`作业状态:${row.attemperstatus}`} />
+              </ListItem>
+              <ListItem>
+                <ListItemText primary={`批号:${row.lotno}`} />
+              </ListItem>
+              <ListItem>
+                <ListItemText primary={`波次:${row.shipdate}`} />
+              </ListItem>
+              <ListItem>
+                <ListItemText primary={`地址:${row.address}`} />
+              </ListItem>
             </MaterList>
           </ExpansionPanelDetails>
         </ExpansionPanel>
